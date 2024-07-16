@@ -1,9 +1,13 @@
 /** Refernces I used for this file: 
  * https://javascript.info/ 
+ * 
+ * This file is only to include topics that are either new to me, important to note or spent more time to understand.
  * */ 
-/* ************************************** 
-String concatination 
- ****************************************/
+
+
+/* **************************************************************************** 
+                          String concatination 
+ ******************************************************************************/
 
 //using other signs than + sign :
 alert(6 - '2')// unlike + this will return 4 because it will convert string to number 
@@ -25,9 +29,9 @@ counter++
 alert(counter) //alerts 2, this is normarl sitaution where you dont use it immediatly so no effect  (situation 3)
 
 
-/*****************************************
- * Conditional branching: if, '?'
- *****************************************/
+/**********************************************************************************
+ *                 Conditional branching: if, '?'
+ **********************************************************************************/
 
 //for the ternary we can do multiple ternary operators after the similcoln : an example below
 let age = 20 
@@ -35,9 +39,9 @@ let ageCategory = (age > 60) ? "Senior" : (age > 18) ? "Youth" : "Baby" //so you
 alert (ageCategory)
 
 
-/********************************************
- * Logical operators
- ********************************************/
+/*************************************************************************************
+ *                    Logical operators
+ *************************************************************************************/
 
 //JavaScript has intrestingly special handling for logical operators so for the OR || 
 //if it encounters true it returns first true value, if false it return the  last value 
@@ -53,9 +57,9 @@ alert(1 && true && 5 && 2)// returns 2 --> the last vlaue from operands
 NOTE: keep in mind AND && has higher precedence than OR ||
  */
 
-/*****************************************
- * Nullish coalescing operator '??'
- *****************************************/
+/**********************************************************************************
+ *               Nullish coalescing operator '??'
+ **********************************************************************************/
 
 //simply (value1 ?? value2) means if value1 undefined or null let it value2 , otherwise keep it value1
 let value1 = null
@@ -68,9 +72,9 @@ alert(value3)// returns value3 which is "I am new"
  * Shortly: OR return first truthy value, Nullish returns first defined value 
  */
 
-/*********************************************
- * The "switch" satatment
- *********************************************/
+/**************************************************************************************
+ *               The "switch" satatment
+ **************************************************************************************/
 
 //idea is we type switch expression then check expressions in cases with a defualt case if no match
 let x = 3
@@ -97,3 +101,43 @@ case3:
   break;
 so if case 1, 5 or 3 any one of them will enter case 3 and alert whatever is there
 */
+
+/********************************************************************************
+ *                              Functions
+ *********************************************************************************/
+
+//Default Value:--> if a function has 2 paramaeters and you passed it 1 the other paramter will be assigned to undefined 
+//so the function will work but the non-given parmater will be undefined,
+//there is a solotion for that which is defineing the parameter to something so instead of undefined 
+//you get whatever value you need and this is called default value 
+function showMessage(from, text = "no text given") {
+  alert( from + ": " + text );
+}
+showMessage("Ann"); //returns  Ann: no text given, but if you do ("Ann", "Alex") you got Ann: Alex
+
+
+/********************************************************************************
+ *                              Function Expressions
+ *********************************************************************************/
+//function expression: you can access after we assign it not in all the code base
+let sayHi = function (){
+  alert("Hello World")
+};
+//function declaration, you can access from everywhere in the code
+function sayHi (){
+  alert("Hello World")
+}
+
+
+/********************************************************************************
+ *                              Arrow Functions, the basics
+ *********************************************************************************/
+
+//simply arrow functions are short version of function expressions see example below of how I used arrow functions
+let ask = (question, yes, no) => confirm(question)? yes() : no () // notice I did not write "function" so it cuts some words make it shorter and simple
+//in function call I included the argemnts 2 and 3 as arrow function where I could've do it using function expression
+ask(
+  "Do you agree?",
+  () => alert("You agreed."),
+  () => alert("You canceled the execution.")
+);
