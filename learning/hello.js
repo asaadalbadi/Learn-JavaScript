@@ -170,19 +170,85 @@
 // //the main reason "in" exists because when you want to check a property existence with === undefined 
 // //there will be special case if the porperty was there but was defined with undefined so the "in" solves the problem 
 
-/**IMPORTANT: here the "for in" loop comes, so we will check like this: for (key in object) */
-let user = {
-  name: "John",
-  age: 30,
-  isAdmin: true
-};
-//its better to say "key" for context, but not a must
-for (let key in user) {
-  // keys
-  alert( key );  // name, age, isAdmin
-  // values for the keys
-  alert( user[key] ); // John, 30, true
-}
-//Continued: NOTE: the order here is based on creation order so it goes, name, age, isAdmin  ... but if we have 
-//integer properties like country codes : "1" : "usa" , "41" : "somecountry" , "20": "other country"
-//here the order will be based on the numbers starting from 1, 20, 41 
+// /**IMPORTANT: here the "for in" loop comes, so we will check like this: for (key in object) */
+// let user = {
+//   name: "John",
+//   age: 30,
+//   isAdmin: true
+// };
+// //its better to say "key" for context, but not a must
+// for (let key in user) {
+//   // keys
+//   alert( key );  // name, age, isAdmin
+//   // values for the keys
+//   alert( user[key] ); // John, 30, true
+// }
+// //Continued: NOTE: the order here is based on creation order so it goes, name, age, isAdmin  ... but if we have 
+// //integer properties like country codes : "1" : "usa" , "41" : "somecountry" , "20": "other country"
+// //here the order will be based on the numbers starting from 1, 20, 41 
+
+// //NOTE: you have to know that object unlike premetive tyuoes are storterd as refreences that refers to object 
+
+// //NOTE: we can do nested objects like this:
+// let user2 = {
+//   name: "John",
+//   sizes: {
+//     height: 182,
+//     width: 50
+//   }
+// };
+
+// alert( user2.sizes.height ); // 182
+
+// /********************************************************************************
+//  *                              Object methods, "this"
+//  *********************************************************************************/
+
+// //"this" is used to refer to the current object so see the ex:
+// let user = {
+//   name: "John",
+//   age: 30,
+//   sayHi() {
+//     // "this" is the "current object"
+//     alert(this.name);
+//   }
+
+// };
+// user.sayHi(); // John
+
+
+/********************************************************************************
+ *                              Optional chaining '?.'
+ *********************************************************************************/
+
+//the idea of it is to make sure when dealing with objects if the object property it no defined the 
+//code does not generate an error, which means it asks if exists you are okay if not return undefined
+//also it allows to safely access nested properties
+
+// The optional chaining ?. syntax has three forms:
+// obj?.prop – returns obj.prop if obj exists, otherwise undefined.
+// obj?.[prop] – returns obj[prop] if obj exists, otherwise undefined.
+// obj.method?.() – calls obj.method() if obj.method exists, otherwise returns undefined.
+
+
+// /********************************************************************************
+//  *                              Symbol type
+//  *********************************************************************************/  
+
+// //idea is that when we have objects sometimes we got them from another script or library so we want maybe to add some property
+// // to that object that is hidden and is not accesseble just for me only even for the ( for key in obj ) it will not be accessed
+// // maybe we can use it to make an id for that object or etc.. 
+// //also we may alter some built-in behaviours
+// let id = Symbol("id");
+// let id2 = Symbol("id");
+// alert(id == id2); //false, because symbols will be different even if desc is same
+// let user = {
+//   name: "John",
+//   age: 30,
+//   [id]: 123
+// };
+
+// for (let key in user) alert(key); // name, age (no symbols)
+
+// // the direct access by the symbol works
+// alert( "Direct: " + user[id] ); // Direct: 123
